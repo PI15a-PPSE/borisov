@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<article version="5.1" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xila="http://www.w3.org/2001/XInclude/local-attributes"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:trans="http://docbook.org/ns/transclusion"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title>Программный Продукт "Игра BlackJack"</title>
+
+    <author>
+      <personname><firstname>Владислав</firstname><surname>Борисов</surname></personname>
+
+      <affiliation>
+        <orgname>ДонНТУ</orgname>
+      </affiliation>
+    </author>
+
+    <pubdate>18-11-2018</pubdate>
+  </info>
+
+  <section>
+    <title>Описание продукта</title>
+
+    <para>Программный продукт <emphasis role="bold">BlackJack</emphasis>был
+    разработан для развлечения. Игра содержит в карточный стол и карточную колоду.</para>
+  </section>
+
+  <section>
+    <title>Первый запуск</title>
+
+    <para>При первом запуске игры пользователю предоставлен стол и игрок сразу получает две карты, за рендеринг карт отвечает следующий код:</para>
+    
+    <programlisting>Card.prototype.view = function(){
+        var htmlEntities = {
+            'hearts' : '&#9829;',
+            'diamonds' : '&#9830;',
+            'clubs' : '&#9827;',
+            'spades' : '&#9824;'
+        }
+        return `
+            <div class="card ` + this.suit + `">
+                <div class="top rank">` + this.rank + `</div>
+                <div class="suit">` + htmlEntities[this.suit] + `</div>
+                <div class="bottom rank">` + this.rank + `</div>
+            </div>
+        `;
+    }
+    </programlisting>
+
+    <para>Заполнение колоды картами представлено в следующем программном листинге:</para>
+
+    <programlisting>this.init = function(){
+            this.deck = []; //empty the array
+            for(var s = 3; s >= 0; s--){
+            for(var r = 12; r >= 0; r--){
+                this.deck.push(new Card(this.ranks[r], this.suits[s]));
+            }
+          }
+        }
+    </programlisting>
+
+    <para>Для обработки кнопки "Стоять" и логики конца игры используется одна функция, представленная ниже:</para>
+
+    <programlisting>this.hitButtonHandler = function(){
+            //deal a card and add to player's hand
+            var card = Deck.deck.pop();
+            this.player.hit(card);
+
+            //render the card and score
+            document.getElementById(this.player.element).innerHTML += card.view();
+            this.playerScore.innerHTML = this.player.getScore();
+
+            //if over, then player looses
+            if(this.player.getScore() > 21){
+                this.gameEnded('You lost!');
+            }
+        }
+    </programlisting>
+
+    <para>Таким образом, было рассмотрено 3 варианта развития событий, с
+    приведенным кодом.</para>
+  </section>
+</article>
