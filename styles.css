@@ -9,3 +9,8 @@
 html {
     height: 100%;
 }
+
+#table {
+    position: relative;
+    padding-top: 20px;
+}
