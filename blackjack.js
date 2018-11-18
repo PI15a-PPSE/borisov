@@ -6,3 +6,8 @@
     @version 0.99
     @date 18.11.2018
 */
+
+//namespacing
+var BlackjackJS = (function() {
+
+}
