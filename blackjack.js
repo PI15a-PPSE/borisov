@@ -20,7 +20,26 @@ var BlackjackJS = (function() {
     */
     function Card(rank, suit){
         this.rank = rank;
-      this.suit = suit;
+        this.suit = suit;
     }
+    /*
+        Gets the value or points of the card
+        @param {Integer} currentTotal - The current total score of the
+        player's hand
+    */
+    Card.prototype.getValue = function(currentTotal){
+        var value = 0;
 
+        if (this.rank == 'A' && currentTotal < 11){
+            value = 11;
+        } else if (this.rank == 'A'){
+            value = 1;
+        } else if (this.rank == 'J' || this.rank == 'Q' || this.rank == 'K'){
+            value = 10;
+        } else {
+            value = parseInt(this.rank);
+        }
+        return value;
+    }
+    
 }
