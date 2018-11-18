@@ -62,4 +62,17 @@ var BlackjackJS = (function() {
         `;
     }
 
+    /***************
+        Player class
+    ***************/
+
+    /*
+        Constructor
+        @param {String} element - The DOM element
+        @param {Array} hand - the array which holds all the cards
+    */
+    function Player(element, hand){
+        this.hand = hand;
+        this.element = element;
+    }
 }
