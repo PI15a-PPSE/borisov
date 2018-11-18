@@ -81,5 +81,20 @@ var BlackjackJS = (function() {
                 }
             }
         }
+
+        /*
+            Shuffles the cards in the deck randomly
+        */
+        this.shuffle = function(){
+            var j, x, i;
+            for (i = this.deck.length; i; i--) {
+                j = Math.floor(Math.random() * i);
+                x = this.deck[i - 1];
+                this.deck[i - 1] = this.deck[j];
+                this.deck[j] = x;
+            }
+        }
+
     }
+    /**************************** End of Deck class *******************************/
 }
