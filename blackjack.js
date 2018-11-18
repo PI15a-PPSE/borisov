@@ -62,6 +62,7 @@ var BlackjackJS = (function() {
         `;
     }
 
+<<<<<<< HEAD
     /***************
         Player class
     ***************/
@@ -108,4 +109,41 @@ var BlackjackJS = (function() {
     }
 
     /*************************** End of Player class ******************************/
+=======
+    /*************************
+        Deck - Singleton class
+    *************************/
+    var Deck = new function(){
+        this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        this.suits = ['hearts', 'spades', 'diamonds','clubs'];
+        this.deck;
+
+        /*
+            Fills up the deck array with cards
+        */
+        this.init = function(){
+            this.deck = []; //empty the array
+            for(var s = 3; s >= 0; s--){
+                for(var r = 12; r >= 0; r--){
+                    this.deck.push(new Card(this.ranks[r], this.suits[s]));
+                }
+            }
+        }
+
+        /*
+            Shuffles the cards in the deck randomly
+        */
+        this.shuffle = function(){
+            var j, x, i;
+            for (i = this.deck.length; i; i--) {
+                j = Math.floor(Math.random() * i);
+                x = this.deck[i - 1];
+                this.deck[i - 1] = this.deck[j];
+                this.deck[j] = x;
+            }
+        }
+
+    }
+    /**************************** End of Deck class *******************************/
+>>>>>>> lab3.2
 }
