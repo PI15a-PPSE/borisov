@@ -9,5 +9,18 @@
 
 //namespacing
 var BlackjackJS = (function() {
+    /**************
+        Card class
+    ***************/
+
+    /*
+        Constructor
+        @param {String} rank
+        @param {String} suit
+    */
+    function Card(rank, suit){
+        this.rank = rank;
+      this.suit = suit;
+    }
 
 }
