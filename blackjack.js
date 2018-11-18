@@ -22,6 +22,7 @@ var BlackjackJS = (function() {
         this.rank = rank;
         this.suit = suit;
     }
+
     /*
         Gets the value or points of the card
         @param {Integer} currentTotal - The current total score of the
@@ -41,5 +42,24 @@ var BlackjackJS = (function() {
         }
         return value;
     }
-    
+
+    /*******************
+        Renders the card
+    *******************/
+    Card.prototype.view = function(){
+        var htmlEntities = {
+            'hearts' : '&#9829;',
+            'diamonds' : '&#9830;',
+            'clubs' : '&#9827;',
+            'spades' : '&#9824;'
+        }
+        return `
+            <div class="card ` + this.suit + `">
+                <div class="top rank">` + this.rank + `</div>
+                <div class="suit">` + htmlEntities[this.suit] + `</div>
+                <div class="bottom rank">` + this.rank + `</div>
+            </div>
+        `;
+    }
+
 }
