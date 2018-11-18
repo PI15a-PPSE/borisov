@@ -69,5 +69,17 @@ var BlackjackJS = (function() {
         this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
         this.suits = ['hearts', 'spades', 'diamonds','clubs'];
         this.deck;
+
+        /*
+            Fills up the deck array with cards
+        */
+        this.init = function(){
+            this.deck = []; //empty the array
+            for(var s = 3; s >= 0; s--){
+                for(var r = 12; r >= 0; r--){
+                    this.deck.push(new Card(this.ranks[r], this.suits[s]));
+                }
+            }
+        }
     }
 }
