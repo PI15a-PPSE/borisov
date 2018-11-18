@@ -4,5 +4,5 @@
 
 ## Установка
 ```
-Сделайте **git clone** или нажмите **Clone or Download** и **Download Zip**, запустите **index.html**
+Сделайте git clone или нажмите Clone or Download и Download Zip, запустите index.html
 ```
