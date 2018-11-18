@@ -8,4 +8,8 @@
 
 html {
     height: 100%;
+
+#table {
+    position: absolute;
+    padding-top: 20px;
 }
