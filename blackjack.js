@@ -75,4 +75,12 @@ var BlackjackJS = (function() {
         this.hand = hand;
         this.element = element;
     }
+
+    /*
+        Hit player with new card from the deck
+        @param {Card} card - the card to deal to the player
+    */
+    Player.prototype.hit = function(card){
+        this.hand.push(card);
+    }
 }
