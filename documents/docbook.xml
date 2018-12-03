@@ -41,13 +41,7 @@
             'clubs' : '&#9827;',
             'spades' : '&#9824;'
         }
-        return `
-            <div class="card ` + this.suit + `">
-                <div class="top rank">` + this.rank + `</div>
-                <div class="suit">` + htmlEntities[this.suit] + `</div>
-                <div class="bottom rank">` + this.rank + `</div>
-            </div>
-        `;
+        return this.rank;
     }
     </programlisting>
 
