@@ -5,29 +5,33 @@
 *    @author Vladislav Borisov
 *    @version 1.0
 *    @date 18.11.2018
-**/
+*/
 
 //namespacing
 var BlackjackJS = (function() {
-    /**************
-        Card class
-    ***************/
-
-    /*
-        Constructor
-        @param {String} rank
-        @param {String} suit
+    /**
+    *   Card class
+    *   
+    *   This is a card class
+    *   @author Vladislav Borisov
+    *   @version 1.0
     */
+
+    /**
+     *    Constructor
+     *   @param {String} rank
+     *   @param {String} suit
+     */
     function Card(rank, suit){
         this.rank = rank;
         this.suit = suit;
     }
 
-    /*
-        Gets the value or points of the card
-        @param {Integer} currentTotal - The current total score of the
-        player's hand
-    */
+    /**
+     *   Gets the value or points of the card
+     *   @param {Integer} currentTotal - The current total score of the
+     *   player's hand
+     */
     Card.prototype.getValue = function(currentTotal){
         var value = 0;
 
@@ -43,9 +47,11 @@ var BlackjackJS = (function() {
         return value;
     }
 
-    /*******************
-        Renders the card
-    *******************/
+    /**
+     *  Renders the card
+     *  @param null
+     *  @return null
+     */
     Card.prototype.view = function(){
         var htmlEntities = {
             'hearts' : '&#9829;',
@@ -62,33 +68,36 @@ var BlackjackJS = (function() {
         `;
     }
 
-    /*************************** End of Card class ********************************/
+    /**
+     *   Player class
+     *   This is a player class
+     *   @author Vladislav Borisov
+     *   @version 1.0
+     */
 
-    /***************
-        Player class
-    ***************/
-
-    /*
-        Constructor
-        @param {String} element - The DOM element
-        @param {Array} hand - the array which holds all the cards
-    */
+    /**
+     *    Constructor
+     *    @param {String} element - The DOM element
+     *    @param {Array} hand - the array which holds all the cards
+     */
     function Player(element, hand){
         this.hand = hand;
         this.element = element;
     }
 
-    /*
-        Hit player with new card from the deck
-        @param {Card} card - the card to deal to the player
-    */
+    /**
+     *   Hit player with new card from the deck
+     *   @param {Card} card - the card to deal to the player
+     */
     Player.prototype.hit = function(card){
         this.hand.push(card);
     }
 
-    /*
-        Returns the total score of all the cards in the hand of a player
-    */
+    /**
+     *  Returns the total score of all the cards in the hand of a player
+     *  @param null
+     *  @return null
+     */
     Player.prototype.getScore = function(){
         var points = 0;
         for(var i = 0; i < this.hand.length; i++){
@@ -98,9 +107,11 @@ var BlackjackJS = (function() {
         return points;
     }
 
-    /*
-        Returns the array (hand) of cards
-    */
+    /**
+     *   Returns the array (hand) of cards
+     *  @param null
+     *  @return null
+     */
     Player.prototype.showHand = function(){
         var hand = "";
         for(var i = 0; i < this.hand.length; i++){
@@ -109,20 +120,22 @@ var BlackjackJS = (function() {
         return hand;
     }
 
-    /*************************** End of Player class ******************************/
-
-    /*************************
-        Deck - Singleton class
-    *************************/
-
+    /**
+     *   Deck class
+     *   This is a deck class
+     *   @author Vladislav Borisov
+     *   @version 1.0
+     */
     var Deck = new function(){
         this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
         this.suits = ['hearts', 'spades', 'diamonds','clubs'];
         this.deck;
 
-        /*
-            Fills up the deck array with cards
-        */
+        /**
+         *   Fills up the deck array with cards
+         *  @param null
+         *  @return null
+         */
         this.init = function(){
             this.deck = []; //empty the array
             for(var s = 3; s >= 0; s--){
@@ -132,9 +145,9 @@ var BlackjackJS = (function() {
             }
         }
 
-        /*
-            Shuffles the cards in the deck randomly
-        */
+        /**
+         *   Shuffles the cards in the deck randomly
+         */
         this.shuffle = function(){
             var j, x, i;
             for (i = this.deck.length; i; i--) {
@@ -146,18 +159,20 @@ var BlackjackJS = (function() {
         }
 
     }
-
-    /**************************** End of Deck class *******************************/
     
-    /*************************
-        Game - Singleton class
-    **************************/
-
+    /**
+     *   Game class
+     *   Describes a game class
+     *   @author Vladislav Borisov
+     *   @version 1.0
+     */
     var Game = new function(){
 
-        /*
-            Deal button event handler
-        */
+        /**
+         *  Deal button event handler
+         *  @param null
+         *  @returns null
+         */
         this.dealButtonHandler = function(){
             Game.start();
             this.dealButton.disabled = true;
@@ -165,9 +180,11 @@ var BlackjackJS = (function() {
             this.standButton.disabled = false;
         }
 
-        /*
-            Hit button event handler
-        */
+        /**
+         *   Hit button event handler
+         *  @param null
+         *  @return null
+         */
         this.hitButtonHandler = function(){
             //deal a card and add to player's hand
             var card = Deck.deck.pop();
@@ -183,9 +200,11 @@ var BlackjackJS = (function() {
             }
         }
 
-        /*
-            Stand button event handler
-        */
+        /**
+         *   Stand button event handler
+         *  @param null
+         *  @return null
+         */
         this.standButtonHandler = function(){
             this.hitButton.disabled = true;
             this.standButton.disabled = true;
@@ -220,9 +239,11 @@ var BlackjackJS = (function() {
 
             }
         }
-        /*
-            Initialize
-        */
+        /**
+         *  Initialize
+         *  @param null
+         *  @return null
+         */
         this.init = function(){
             this.dealerScore = document.getElementById('dealer-score').getElementsByTagName("span")[0];
             this.playerScore = document.getElementById('player-score').getElementsByTagName("span")[0];
@@ -237,9 +258,11 @@ var BlackjackJS = (function() {
 
         }
 
-        /*
-            Start the game
-        */
+        /**
+         * Start the game
+         *  @param null
+         *  @return null
+         */
         this.start = function(){
 
             //initilaize and shuffle the deck of cards
@@ -263,9 +286,11 @@ var BlackjackJS = (function() {
             this.setMessage("Hit or Stand");
         }
 
-        /*
-            If the player wins or looses
-        */
+        /**
+         *   If the player wins or looses
+         *  @param null
+         *  @return null
+         */
         this.gameEnded = function(str){
             this.setMessage(str);
             this.dealButton.disabled = false;
@@ -274,9 +299,11 @@ var BlackjackJS = (function() {
 
         }
 
-        /*
-            Instructions or status of game
-        */
+        /**
+         *  Instructions or status of game
+         *  @param {String} str
+         *  @return null
+         */
         this.setMessage = function(str){
             document.getElementById('status').innerHTML = str;
         }
